@@ -1,13 +1,18 @@
 package internal
 
-func LRECompression() {
+import "fmt"
+
+func LRECompression(data []byte) {
 	//Run length encoding
 
-	return []byte
+	var compressed []byte
+
+	fmt.Println(compressed)
+
+	fmt.Println(data)
 
 }
 
 func LREDecompression() {
 
-	return []byte
 }

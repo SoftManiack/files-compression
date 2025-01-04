@@ -3,8 +3,10 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"files_compression/internal"
 	"fmt"
 	"os"
+	"reflect"
 )
 
 func main() {
@@ -21,13 +23,32 @@ func main() {
 	defer file.Close()
 
 	wr := bytes.Buffer{}
+
 	sc := bufio.NewScanner(file)
+
+	fmt.Println(reflect.TypeOf(wr))
+
 	for sc.Scan() {
 		wr.WriteString(sc.Text())
 	}
 
-	fmt.Println(wr)
+	fmt.Println(reflect.TypeOf(wr))
+
+	internal.LRECompression(wr.Read())
+
+	/*
+		/wr1 := bytes.Buffer{}
+		newData := []byte("New data")
+		wr1.Write(newData)
+
+		p := make([]byte, 0)
+		wr1.Read(p)
+
+		fmt.Println(p)
+	*/
 
 	//internal.LRECompression(data)
 
 }
+
+// Разобарться в чтении байтов
