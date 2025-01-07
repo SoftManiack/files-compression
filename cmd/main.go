@@ -1,40 +1,21 @@
 package main
 
 import (
-	"bufio"
-	"bytes"
-	"files_compression/internal"
+	internal "files_compression/internal"
 	"fmt"
-	"os"
-	"reflect"
 )
 
 func main() {
 
-	file, err := os.Open("./images/banana.jpeg")
-
-	fmt.Printf("Type %T", file)
+	data, err := internal.ReadByteFile("banana.jpeg")
 
 	if err != nil {
 		fmt.Println(err)
-		os.Exit(1)
+	} else {
+		internal.LRECompression(data)
 	}
 
-	defer file.Close()
-
-	wr := bytes.Buffer{}
-
-	sc := bufio.NewScanner(file)
-
-	fmt.Println(reflect.TypeOf(wr))
-
-	for sc.Scan() {
-		wr.WriteString(sc.Text())
-	}
-
-	fmt.Println(reflect.TypeOf(wr))
-
-	internal.LRECompression(wr.Read())
+	//internal.LRECompression()
 
 	/*
 		/wr1 := bytes.Buffer{}
