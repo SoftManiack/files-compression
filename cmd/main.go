@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		internal.LRECompression(data)
+		_ := internal.LRECompression(data)
 	}
 
 	//internal.LRECompression()
