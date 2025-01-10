@@ -9,12 +9,15 @@ func main() {
 
 	data, err := internal.ReadByteFile("banana.jpeg")
 
+	var compressed []byte
+
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		_ := internal.LRECompression(data)
+		compressed = internal.LRECompression(data)
 	}
 
+	fmt.Println(compressed[0])
 	//internal.LRECompression()
 
 	/*

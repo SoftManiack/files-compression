@@ -11,16 +11,14 @@ func LRECompression(data []byte) []byte {
 
 	fmt.Printf("uncompressed length %d \n", len(data))
 
-	fmt.Printf("compressed length %d \n", len(compressed))
-
-	var count int16 = 1
+	var count uint8 = 1
 	var value uint8 = 0
 
 	for i := 0; i < len(data); i++ {
 
 		if i == 0 {
 			value = data[i]
-		} else if value == 0 && data[i] == value {
+		} else if data[i] == value {
 			count++
 		} else {
 
@@ -32,14 +30,16 @@ func LRECompression(data []byte) []byte {
 		}
 	}
 
-	fmt.Println(data)
+	fmt.Println(data[0:10])
 
-	fmt.Println(compressed)
+	fmt.Printf("compressed length %d \n", len(compressed))
+	fmt.Println(compressed[0:10])
 
 	return compressed
 
 }
 
-func LREDecompression() {
+func LREDecompression(data []byte) []byte {
 
+	return nil
 }
