@@ -9,31 +9,30 @@ func LRECompression(data []byte) []byte {
 
 	var compressed []byte
 
-	fmt.Printf("uncompressed length %d \n", len(data))
+	var bits_data []bits
+	var bits_compressed []bits
+
+	fmt.Printf("uncompressed length %d \n", len(bits_data))
 
 	var count uint8 = 1
 	var value uint8 = 0
 
-	for i := 0; i < len(data); i++ {
+	for i := 0; i < len(bits_data); i++ {
 
 		if i == 0 {
-			value = data[i]
-		} else if data[i] == value {
-			count++
+			value = bits_data[i]
+			count--
 		} else {
+			count++
+			bits_compressed = append(bits_compressed, value)
+			bits_compressed = append(bits_compressed, count)
 
-			compressed = append(compressed, value)
-			compressed = append(compressed, count)
-
-			value = data[i]
+			value = bits_data[i]
 			count = 0
 		}
 	}
 
-	fmt.Println(data[0:10])
-
-	fmt.Printf("compressed length %d \n", len(compressed))
-	fmt.Println(compressed[0:10])
+	fmt.Printf("compressed length %d \n", len(bits_compressed))
 
 	return compressed
 

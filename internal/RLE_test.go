@@ -1,7 +1,7 @@
 package internal
 
 import (
-	"fmt"
+	"bytes"
 	"testing"
 )
 
@@ -12,11 +12,13 @@ func TestRLECompression(t *testing.T) {
 
 	input := []byte{1, 1, 1, 255, 255, 255, 255, 10, 90, 70, 70, 70, 70}
 
-	output := LRECompression(input)
+	var output []byte
 
-	fmt.Println(output)
+	output = LRECompression(input)
 
-	if output != nil && output != []byte{1, 3, 255, 4, 10, 1, 90, 1, 70, 4} {
+	t.Log(output)
+
+	if bytes.Equal(output, []byte{1, 3, 255, 4, 10, 1, 90, 1, 70, 4}) {
 		t.Errorf("compression error")
 	}
 }
