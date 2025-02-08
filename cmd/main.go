@@ -1,7 +1,8 @@
 package main
 
 import (
-	internal "files_compression/internal"
+	"files_compression/internal"
+	//internal "files_compression/internal"
 	"fmt"
 )
 
@@ -18,6 +19,8 @@ func main() {
 	}
 
 	fmt.Println(compressed[0])
+
+	internal.DeltaEncoding()
 	//internal.LRECompression()
 
 	/*
